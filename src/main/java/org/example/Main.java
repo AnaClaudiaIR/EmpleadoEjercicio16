@@ -13,9 +13,7 @@ public class Main {
         );  Statement statement = connection.createStatement()) {
 
             //String con la sentencia
-            String sql = "SELECT NOMBRE_EMP, NOMBRE_DEP " +
-                    "FROM EMPLEADO2 JOIN DEPARTAMENTO USING (ID_DEP) "
-                    + "ORDER BY NOMBRE_EMP";
+            String sql = "SELECT NOMBRE_EMP FROM EMPLEADO2 WHERE ID_DEP = 1";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -23,9 +21,7 @@ public class Main {
             //Mientras haya resultados, los guarda en las variables
             while (resultSet.next()) {
                 String empleado = resultSet.getString("NOMBRE_EMP");
-                String departamento = resultSet.getString("NOMBRE_DEP");
-
-                System.out.println("Empleado: " + empleado + " - Departamento: " + departamento);
+                System.out.println("Empleado: " + empleado);
             }
         } catch (SQLException e){
             System.out.println("ERROR --> "+e.getMessage());
